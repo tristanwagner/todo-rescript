@@ -3,5 +3,5 @@
 
 @react.component
 let make = () => {
-  <div className="App"> <Header /> </div>
+  <div className="App"> <Todo /> </div>
 }
