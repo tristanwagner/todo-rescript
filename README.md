@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Todo rescript
+
+You can try the todo app [here](https://tristanwagner.github.io/todo-rescript/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

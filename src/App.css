@@ -3,6 +3,14 @@
   margin: 0 auto;
 }
 
+.App > div > * {
+  margin-bottom: 12px;
+}
+
+h3 {
+  text-align: center;
+}
+
 .App > div > div {
   display: flex;
 }
@@ -24,22 +32,23 @@ ul {
 
 li {
   border-bottom: 1px dashed black;
-}
-
-li > div {
   display: flex;
   gap: 4px;
   justify-content: space-between;
 }
 
-li > div > span {
-  width: 100%;
-}
-
-li > div > button {
+li > button {
   background: red;
   color: white;
   border: none;
+}
+
+li > span:first-child {
+  min-width: 22px;
+}
+
+input[type="checkbox"] ~ span {
+  width: 100%;
 }
 
 .done {
@@ -51,4 +60,4 @@ li > div > button {
   .App > div {
     max-width: 95%;
   }
-} 
+}

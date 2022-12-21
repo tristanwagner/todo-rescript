@@ -20,11 +20,15 @@ let reducer = (state, action) =>
      { input: "", todos }
     | Remove(index) =>
      let todos = state.todos->Js.Array2.filteri((_, i) => index !== i)
+
      { ...state, todos }
     | RemoveAll =>
       { ...state, todos: [] }
     | Toggle(index) =>
-      let todos = state.todos->Js.Array2.mapi((todo, i) => i === index ? {...todo, done: !todo.done} : todo)
+      let todos = state.todos->Js.Array2.mapi(
+        (todo, i) => i === index ? {...todo, done: !todo.done} : todo
+      )
+
       { ...state, todos }
     | Input(value) =>
       { ...state, input: value }
@@ -41,6 +45,9 @@ let initalState = {
 @react.component
 let make = () => {
   let (state, dispatch) = React.useReducer(reducer, initalState)
+
+  let { input, todos } = state
+
   let onKeyDown = (e) => {
     let key = e->ReactEvent.Keyboard.key
     switch key {
@@ -56,16 +63,23 @@ let make = () => {
     <h3>{"Todo list"->React.string}</h3>
     <div>
       <input type_="text"
-        value={state.input}
+        value={input}
         onKeyDown={onKeyDown}
         onInput={e => ReactEvent.Form.currentTarget(e)["value"]->Input->dispatch} />
       <button onClick={_ => Add->dispatch}>{"Add"->React.string}</button>
       <button onClick={_ => RemoveAll->dispatch}>{"RemoveAll"->React.string}</button>
     </div>
     <ul>
-      { state.todos->Js.Array2.mapi((todo, i) =>
+      { todos->Js.Array2.mapi((todo, i) =>
         <li>
-          <div>
+            <span
+              style={
+                ReactDOM.Style.make(
+                  ~fontWeight="800",
+                  ()
+                )
+              }
+            >{ `${string_of_int(i + 1)}.`->React.string }</span>
             <input
               type_="checkbox"
               checked={todo.done}
@@ -75,7 +89,6 @@ let make = () => {
               {todo.text->React.string}
             </span>
             <button onClick={_ => i->Remove->dispatch}>{"X"->React.string}</button>
-          </div>
         </li>
       )->React.array}
     </ul>

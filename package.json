@@ -2,6 +2,7 @@
   "name": "todo",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://tristanwagner.github.io/todo-rescript/",
   "dependencies": {
     "@rescript/react": "^0.10.3",
     "@testing-library/jest-dom": "^5.16.5",
